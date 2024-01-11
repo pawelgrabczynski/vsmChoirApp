@@ -10,8 +10,7 @@ For logged in users, it enables access to additional resources, e.g. vocal recor
   * virtualenv envname
   * envname\scripts\activate
 * 3 - cd into project "cd vsmChoirApp"
-* 4 - pip install -r requirements.txt
-* 5 - python manage.py runserver
+* 4 - python manage.py runserver
 
 ## Features
 * Search for recordings
