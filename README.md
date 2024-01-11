@@ -4,7 +4,7 @@ For users not logged in, it allows viewing information about the choir: news, ga
 For logged in users, it enables access to additional resources, e.g. vocal recordings.
 
 ## Instalation
-* 1 - clone repo https://github.com/piggy8071/vsmChoirApp
+* 1 - clone repo https://github.com/pawelgrabczynski/vsmChoirApp
 * 2 - create a virtual environment and activate
   * pip install virtualenv
   * virtualenv envname
