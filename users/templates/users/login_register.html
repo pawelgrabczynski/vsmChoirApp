@@ -1,0 +1,103 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %} 
+
+{% if page == 'register' %}
+
+<div class="auth">
+  <div class="card">
+    <div class="auth__header text-center" style="padding-top:370px" >
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" />
+
+            <a class="backButton" href="{% url 'login' %}"><i class="zmdi zmdi-arrow-left"></i></a>
+            <a href="/">
+        <img src="{% static 'images/logo_czarne.svg' %}" alt="icon"  />
+      </a>
+      <h3>Zarejestruj konto</h3>
+      <p>Stwórz nowe konto dla chórzysty</p>
+    </div>
+
+    <form method="POST" action="{% url 'register' %}" class="form auth__form">
+      {% csrf_token %} 
+
+      {% for field in form %} 
+
+      <div class="form__field">
+        <label for="formInput#text">{{field.label}}</label>
+        {{field}}
+
+        <!-- {% if field.help_text %} 
+          <small>{{field.help_text}}</small>
+        {% endif %} -->
+
+        {% for error in field.errors %}
+          <p style="color: red">{{error}}</p>
+        {% endfor %} 
+      </div>
+
+      {% endfor %}
+
+      <div class="auth__actions">
+        <input class="btn btn--sub btn--lg" type="submit" value="Zarejestruj" />
+      </div>
+    </form>
+  
+  </div>
+</div>
+
+{% else %}
+
+<div class="auth">
+    <div class="card">
+      <div class="auth__header text-center" style="padding-top:100px" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" />
+  
+              <a class="backButton" href="{% url 'news' %}"><i class="zmdi zmdi-arrow-left"></i></a>
+              <a href="/">
+          <img src="{% static 'images/logo_czarne.svg' %}" alt="icon"  />
+        </a>
+        <h3>Logowanie</h3>
+        <p>Witaj, Chórzysto!</p>
+      </div>
+
+      <form action ="{% url 'login' %}" method="POST" class="form auth__form">
+        {% csrf_token %} 
+        <!-- Input:Username-->
+        <div class="form__field">
+          <label for="formInput#text">Nazwa użytkownika: </label>
+          <input
+            class="input input--text"
+            id="formInput#text"
+            type="text"
+            name="username"
+            placeholder="Enter your username..."
+          />
+        </div>
+
+        <!-- Input:Password -->
+        <div class="form__field">
+          <label for="formInput#password">Hasło: </label>
+          <input
+            class="input input--password"
+            id="formInput#passowrd"
+            type="password"
+            name="password"
+            placeholder="••••••••"
+          />
+        </div>
+        <div class="auth__actions">
+          <input class="btn btn--sub btn--lg" type="submit" value="Zaloguj" />
+          <a href="{% url 'reset_password' %}">Nie pamiętasz hasła?</a>
+        </div>
+      </form>
+      <div class="auth__alternative">
+            <p>Nie masz konta?</p>
+            <a href="{% url 'register' %}">Zarejestruj się</a>
+        </div>
+    </div>
+  </div>
+{% endif %}
+
+
+
+{% endblock content %} 

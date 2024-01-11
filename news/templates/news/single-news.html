@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<!-- Main Section -->
+<main class="singleProject my-md">
+    <div class="container">
+      <div class="layout">
+        <div class="column column--1of3">
+          {% if newsObj.featured_image %}
+          <img class="singleProject__preview" src="{{ newsObj.featured_image.url }}" alt="portfolio thumbnail" />
+          {% endif %}
+        </div>
+        <div class="column column--2of3">
+          <a class="project__author" href="{% url 'user-profile' newsObj.owner.id %}">By {{newsObj.owner.name}}</a>
+          <p>Dodane {{newsObj.created}}</p>
+          <h2 class="singleProject__title">{{newsObj.title}}</h2>
+          <p>{{newsObj.body}}</p>
+          <br>
+          {% if newsObj.link %}
+          <iframe width="700" height="450"  src="https://www.youtube.com/embed/gRvNUoBK9Rc">
+          </iframe>
+          {% endif %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </main>
+
+{% endblock content %}

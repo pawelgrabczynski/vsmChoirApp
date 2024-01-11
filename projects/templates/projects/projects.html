@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+{% block content %}
+
+ <!-- Main Section -->
+<main class="projects">
+<section class="hero-section text-center">
+    <div class="container container--narrow">
+    <div class="hero-section__box">
+        <h3>Wyszukaj utwór po tytule lub kompozytorze </h3>
+    </div>
+
+    <div class="hero-section__search">
+        <form class="form" action="#" method="get">
+        <div class="form__field">
+            
+            <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                            placeholder="" value="{{search_query}}" />
+        </div>
+
+            <input class="btn btn--sub btn--lg" type="submit" value="Wyszukaj" />
+        </form>
+    </div>
+    </div>
+</section>
+<!-- Search Result: DevList -->
+<section class="projectsList">
+    <div class="container">
+    <div class="grid grid--three">
+
+        {% for project in projects %}
+        <div class="column">
+        <div class="card project">
+            <a href="{% url 'project' project.id %}" class="project">
+            <img class="project__thumbnail" src="{{project.featured_image.url}}" alt="project thumbnail" style="width: 25em;" />
+            <div class="card__body">
+                <h3 class="project-title">{{project.title}}</h3>
+                <p><a class="project__author" href="">{{project.composer}}</a></p>
+                
+                
+            </div>
+            </a>
+        </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    </div>
+</section>
+
+
+</main>
+
+{% endblock content %}

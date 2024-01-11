@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% block content %}
+
+ <!-- Main Section -->
+<main class="projects">
+<!-- <section class="hero-section text-center">
+    <div class="container container--narrow">
+    <div class="hero-section__box">
+        <h3>Aktualności</h3>
+    </div>
+    </div>
+</section> -->
+
+<section class="projectsList">
+    <div class="container">
+    <div class="grid grid--three">
+
+        {% for singleNews in news %}
+        <div class="column">
+        <div class="card project">
+            <a href="{% url 'single-news' singleNews.id %}" class="singleNews">
+            {% if singleNews.featured_image %}
+            <img class="project__thumbnail" src="{{singleNews.featured_image.url}}" alt="singleNews thumbnail" />
+            
+            {% endif %}
+            <div class="card__body">
+            
+                
+                <h4 class="project-title">{{singleNews.title}}</h4>
+                <!-- <p><a class="project__author" href="{% url 'user-profile' singleNews.owner.id %}">By {{singleNews.owner.name}}</a></p> -->
+                {% if singleNews.short_description %}
+                <p>{{singleNews.short_description}}</p>
+                {% endif %}
+                
+            </div>
+            </a>
+        </div>
+        </div>
+        {% endfor %}
+        
+
+    </div>
+    </div>
+</section>
+
+
+</main>
+
+{% endblock content %}

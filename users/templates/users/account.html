@@ -1,0 +1,124 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main class="settingsPage profile my-md">
+  <div class="container">
+    <div class="layout">
+      <div class="column column--1of3">
+        <div class="card text-center">
+          <div class="card__body dev">
+            <a class="tag tag--pill tag--main settings__btn" href="{% url 'edit-account' %}"><i class="zmdi zmdi-edit"></i> Edytuj</a>
+            <img class="avatar avatar--xl dev__avatar" src="{{profile.profile_image.url}}" />
+            <h2 class="dev__name">{{profile.name}}</h2>
+            {% if profile.voice %}
+            <p class="dev__title">{{profile.voice}}</p>
+            {% endif %}
+            
+            {% if profile.location %}
+            <p class="dev__location">Z: {{profile.location}}</p>
+            {% endif %}
+
+            
+            <ul class="dev__social">
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" />
+
+              {% if profile.social_facebook %}
+              <li>
+              <a title="Facebook" href="{{profile.social_facebook}}" target="_blank"><i class="zmdi zmdi-facebook-box"></i></a> 
+              </li>
+              {% endif %}
+
+              {% if profile.social_instagram %} 
+              <li>
+                <a title="Instagram" href="{{profile.social_instagram}}" target="_blank"><i class="zmdi zmdi-instagram"></i></a>
+              </li>
+              {% endif %}
+
+              {% if profile.social_twitter %} 
+              <li>
+                <a title="Twitter" href="{{profile.social_twitter}}" target="_blank"><i class="zmdi zmdi-twitter-box"></i></a>
+              </li>
+              {% endif %}
+
+              {% if profile.social_youtube %} 
+              <li>
+                <a title="YouTube" href="{{profile.social_youtube}}" target="_blank"><i class="zmdi zmdi-youtube"></i></a>
+              </li>
+              {% endif %}
+
+              {% if profile.social_website %} 
+              <li>
+                <a title="Personal Website" href="{{profile.social_website}}" target="_blank"><i class="zmdi zmdi-globe-alt"></i></a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="column column--2of3">
+        <div class="devInfo">
+          <h3 class="devInfo__title">O mnie</h3>
+          <p class="devInfo__about">{{profile.bio}}</p>
+        </div>
+        
+<!-- Dla Administratora -->
+
+        <div class="settings">
+          <h3 class="settings__title">Aktualności</h3>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-news' %}">Dodaj news</a>
+        </div>
+        <table class="settings__table">
+          {% for singleNews in news %}
+        
+        <tr>
+          <td class="settings__thumbnail">
+            <a href="{% url 'single-news' singleNews.id %}">
+              {% if singleNews.featured_image %}
+            <img class="project__thumbnail" src="{{singleNews.featured_image.url}}" alt="singleNews thumbnail" />
+            
+            {% endif %}</a>
+          </td>
+          <td class="settings__tableInfo">
+            <a href="{% url 'single-news' singleNews.id %}">{{singleNews.title}}</a>
+            <p>{{singleNews.body|slice:"150"}}</p>
+          </td>
+          <td class="settings__tableActions">
+            <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-news' singleNews.id %}">Edytuj</a>
+            <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-news' singleNews.id %}">Usuń</a>
+          </td>
+        </tr>
+         {% endfor %}
+
+        <table class="settings__table">
+
+        <div class="settings">
+          <h3 class="settings__title">Nagrania</h3>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-project' %}">Dodaj nagrania</a>
+        </div>
+
+        <table class="settings__table">
+
+          {% for project in projects %}
+          <tr>
+            <td class="settings__thumbnail">
+              <a href="{% url 'project' project.id %}"><img src="{{project.featured_image.url}}" alt="Project Thumbnail" /></a>
+            </td>
+            <td class="settings__tableInfo">
+              <a href="{% url 'project' project.id %}">{{project.title}}</a>
+              <p>{{project.description|slice:"150"}}</p>
+            </td>
+            <td class="settings__tableActions">
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}">Edytuj</a>
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-project' project.id %}">Usuń</a>
+            </td>
+          </tr>
+          {% endfor %}
+          
+            
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock content %}

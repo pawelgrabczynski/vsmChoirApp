@@ -1,0 +1,39 @@
+{% extends 'main.html' %} {% block content %}
+
+<main class="formPage my-xl">
+  <div class="content-box">
+    <div class="formWrapper text-center">
+      <h3 style="text-align: left">Kontakt</h3>
+      <br />
+      <p style="font-weight: 700">
+        Chór Vox Sanctae Margaritae
+        <br />Parafii pw. św. Małgorzaty w Dębnie
+      </p>
+      <p>32-852 Dębno, Dębno 9</p>
+      <br />
+      <p style="font-weight: 700">Dyrygent</p>
+      <p>
+        Paweł Grabczyński <br />tel. +48 538 343 090 <br />mail:
+        chormalgorzata@gmail.com
+      </p>
+      <br />
+      <div class="mapouter">
+        <div class="gmap_canvas">
+          <iframe
+            position: centre
+            width="700"
+            height="300"
+            id="gmap_canvas"
+            src="https://maps.google.com/maps?q=32-852%20D%C4%99bno&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock content %}
