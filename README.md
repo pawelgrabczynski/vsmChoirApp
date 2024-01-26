@@ -9,7 +9,7 @@ For logged in users, it enables access to additional resources, e.g. vocal recor
   * pip install virtualenv
   * virtualenv envname
   * envname\scripts\activate
-* 3 - cd into project "cd vsmChoirApp"
+* 3 - pip install -r requirements.txt
 * 4 - python manage.py runserver
 
 ## Features
